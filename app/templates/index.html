@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>    
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="navbar sticky-top bg-dark fixed-top m-1 rounded">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="#">Calculadora de consumo vehicular</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Sitios de Interes</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Cosas de interes
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container mt-1"> 
+    <div class="row">
+      <div class="p-2 navbar-dark bg-dark rounded-3">      
+          <form>
+            <div class="form-group">
+              <label for="marca" class="form-label text-white">Marca:</label>
+              <select class="form-control" id="marca" name="marca">
+                <option selected disabled >Seleccione una Marca</option>
+                {% for marca in marcas %}
+                <option value="{{ marca }}">{{ marca }}</option>
+                {% endfor %}
+              </select>
+            </div>        
+            <div class="form-group">
+              <label for="modelo" class="form-label text-white">Modelo:</label>
+              <select class="form-control" id="modelos-vehiculos">                                     
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="modelo" class="form-label text-white">Cilindrada:</label>
+              <select class="form-control" id="cilindrada">
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="modelo" class="form-label text-white">Transmision:</label>
+              <select class="form-control" id="transmisiones">                      
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="modelo" class="form-label text-white">Combustible:</label>
+              <select class="form-control" id="combustible">                     
+              </select>
+            </div>
+          </form>
+
+          <div class="card mt-4 bg-info">
+            <div class="card-header">
+              <h5 class="card-title text-white text-center">Selecciona el tipo de recorrido</h5>
+            </div>
+            <div class="card-body text-center">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="urbano">
+                <label class="form-check-label text-white" for="urbano">
+                  Urbano
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="mixto">
+                <label class="form-check-label text-white" for="mixto">
+                  Mixto
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="ruta" checked>
+                <label class="form-check-label text-white" for="ruta">
+                  Ruta
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="m-5 row justify-content-center">
+            <label for="customRange3" class="form-label text-white">Kilometros a recorrer</label>
+            <input type="range" class="form-range-track-width: 50%" min="0" max="3000" step="50" id="customRange3" value="0">          
+          </div> 
+
+          <div class="card w-80 m-4 text-white text-center bg-info border-light row justify-content-center">
+            <div class="card-headers">
+              <h5 class="card-title text-center"><span id="valorSeleccionado" class="text">0</span> Kilometros</h5>
+            </div>
+          </div>        
+
+          <div class="card mb-3 text-white bg-info border-light" >
+            <!-- <img src="..." class="card-img-top" alt="..."> -->
+            <div class="card-body">
+              <h5 class="card-title text-center" id="card-title">El consumo aproximado de tu vehiculo va a ser de:</h5>
+              <div class="container">
+                <h1 class="card-text text-center"><span  id="calculo">0</span> litros</h1>
+              </div>
+              <p class="card-text"><small class="text-muted">Powered by Jose Modad</small></p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div> 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>       
+<script> 
+  $(document).ready(function() {   
+      const categorias = document.getElementById('marca');
+      const modelos = document.getElementById('modelos-vehiculos');
+      // Obtener el elemento select del HTML para la cilindrada
+      const selectCilindrada = document.getElementById('cilindrada');
+      const selectTransmisiones = document.getElementById('transmisiones');
+      const selectCombustible = document.getElementById('combustible');              
+      categorias.addEventListener('change', () => {
+          const categoriaSeleccionada = categorias.options[categorias.selectedIndex].text;
+          fetch('/procesar', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                categoria: categoriaSeleccionada                 
+              })                
+          })
+          .then(response => response.json()) // Analizar la respuesta JSON
+          .then(modelosVehiculos => {
+            // Hacer algo con la lista de modelos de vehículos
+            //console.log(modelosVehiculos);
+          
+            // Obtener el elemento select del HTML
+            const selectModelos = document.getElementById('modelos-vehiculos');
+            // Limpiar opciones previas
+            selectModelos.innerHTML = '';
+            $("#modelos-vehiculos").append("<option selected disabled >Seleccione un Modelo</option>");
+            // Recorrer la lista de modelos de vehículos recibida
+            for (let modelo of modelosVehiculos) {
+              // Crear una nueva opción
+              const option = document.createElement('option');
+              // Establecer el valor del atributo 'value' con el modelo de vehículo actual
+              option.value = modelo;
+              // Establecer el texto dentro de la opción con el modelo de vehículo actual
+              option.textContent = modelo;
+              // Agregar la opción creada al elemento select
+              selectModelos.appendChild(option);
+            }
+          })
+      });
+
+      // Evento change en el elemento 'select' de los modelos de vehículos
+      modelos.addEventListener('change', () => {
+        const marcaSeleccionada = categorias.options[categorias.selectedIndex].text;
+        const modeloSeleccionado = modelos.options[modelos.selectedIndex].text;
+        // Enviar la solicitud a la ruta de FastAPI para procesar la cilindrada
+        fetch('/procesar-cilindrada', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            marca: marcaSeleccionada,
+            modelo: modeloSeleccionado
+          })
+        })
+        .then(response => response.json()) // Analizar la respuesta JSON
+        .then(data => {
+          // Actualizar el elemento select de la cilindrada con las opciones recibidas
+          selectCilindrada.innerHTML = '';
+          $("#cilindrada").append("<option selected disabled >Seleccione las Cilindrada</option>");
+          for (let cilindrada of data.cilindradas) {
+            const option = document.createElement('option');
+            option.value = cilindrada;
+            option.textContent = cilindrada;
+            selectCilindrada.appendChild(option);
+          }
+        });
+      });
+      // Evento change en el elemento 'select' de los modelos de vehículos
+      selectCilindrada.addEventListener('change', () => {
+        const marcaSeleccionada = categorias.options[categorias.selectedIndex].text;
+        const modeloSeleccionado = modelos.options[modelos.selectedIndex].text;
+        const cilindradaSeleccionada = selectCilindrada.options[selectCilindrada.selectedIndex].text;
+        // Enviar la solicitud a la ruta de FastAPI para procesar la cilindrada
+        fetch('/procesar-transmision', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            marca: marcaSeleccionada,
+            modelo: modeloSeleccionado,
+            cilindrada: cilindradaSeleccionada,
+          })
+        })
+        .then(response => response.json()) // Analizar la respuesta JSON
+        .then(data => {
+          // Actualizar el elemento select de la transmision con las opciones recibidas
+          selectTransmisiones.innerHTML = '';
+          $("#transmisiones").append("<option selected disabled >Seleccione el tipo de Transmision</option>");
+          for (let transmision of data.transmisiones) {
+            const option = document.createElement('option');
+            option.value = transmision;
+            option.textContent = transmision;
+            selectTransmisiones.appendChild(option);
+          }
+        });
+      });
+      // Evento change en el elemento 'select' de las transmisiones de los vehículos
+      selectTransmisiones.addEventListener('change', () => {
+        const marcaSeleccionada = categorias.options[categorias.selectedIndex].text;
+        const modeloSeleccionado = modelos.options[modelos.selectedIndex].text;
+        const cilindradaSeleccionada = selectCilindrada.options[selectCilindrada.selectedIndex].text;
+        const transmisionSeleccionada = selectTransmisiones.options[selectTransmisiones.selectedIndex].text;
+        // Enviar la solicitud a la ruta de FastAPI para procesar la cilindrada
+        fetch('/procesar-combustible', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            marca: marcaSeleccionada,
+            modelo: modeloSeleccionado,
+            cilindrada: cilindradaSeleccionada,
+            transmision: transmisionSeleccionada,
+          })
+        })
+        .then(response => response.json()) // Analizar la respuesta JSON
+        .then(data => {
+          // Actualizar el elemento select del combustible con las opciones recibidas
+          selectCombustible.innerHTML = '';
+          $("#combustible").append("<option selected disabled >Seleccione el tipo de Combustible</option>");
+          for (let tipocombustible of data.combustible) {
+            const option = document.createElement('option');
+            option.value = tipocombustible;
+            option.textContent = tipocombustible;
+            selectCombustible.appendChild(option);
+          }
+        });
+      });
+      selectCombustible.addEventListener('change', () => {
+        const marcaSeleccionada = categorias.options[categorias.selectedIndex].text;
+        const modeloSeleccionado = modelos.options[modelos.selectedIndex].text;
+        const cilindradaSeleccionada = selectCilindrada.options[selectCilindrada.selectedIndex].text;
+        const transmisionSeleccionada = selectTransmisiones.options[selectTransmisiones.selectedIndex].text;
+        const combustibleSeleccionado = selectCombustible.options[selectCombustible.selectedIndex].text;
+        // Enviar la solicitud a la ruta de FastAPI para procesar la cilindrada
+        fetch('/procesar-todo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            marca: marcaSeleccionada,
+            modelo: modeloSeleccionado,
+            cilindrada: cilindradaSeleccionada,
+            transmision: transmisionSeleccionada,
+            combustible: combustibleSeleccionado,
+          })
+        })
+      });      
+      $('input:radio').change(function(){
+        const selectedValue = $(this).val();
+        const barraSelectora = document.getElementById("customRange3");
+        const valorSeleccionado = document.getElementById("valorSeleccionado");
+        const calculo = document.getElementById("calculo"); 
+        
+        const marcaSeleccionada = categorias.options[categorias.selectedIndex].text;
+        const modeloSeleccionado = modelos.options[modelos.selectedIndex].text;
+        const cilindradaSeleccionada = selectCilindrada.options[selectCilindrada.selectedIndex].text;
+        const transmisionSeleccionada = selectTransmisiones.options[selectTransmisiones.selectedIndex].text;
+        const combustibleSeleccionado = selectCombustible.options[selectCombustible.selectedIndex].text;
+
+
+        valorSeleccionado.textContent = barraSelectora.value;
+        barraSelectora.addEventListener("input", function(){
+          valorSeleccionado.textContent = barraSelectora.value;
+          
+          const consumo = Number(calculo.dataset.consumo);
+          const valorBarra = Number(barraSelectora.value);
+          
+          const resultado = (valorBarra * consumo)/100;
+          calculo.textContent = resultado.toFixed(2);
+        });        
+        fetch('/procesar-cheked', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            marca: marcaSeleccionada,
+            modelo: modeloSeleccionado,
+            cilindrada: cilindradaSeleccionada,
+            transmision: transmisionSeleccionada,
+            combustible: combustibleSeleccionado,
+            check: selectedValue,
+          })
+        }).then(response => response.json())
+          .then(data => {
+            calculo.dataset.consumo = data.consumo;
+            const consumo = Number(calculo.dataset.consumo);
+            const valorBarra = Number(barraSelectora.value);
+
+            const resultado = (valorBarra * consumo)/100;
+            calculo.textContent = resultado.toFixed(2);          
+          })
+        .catch(error => console.log(error));
+              
+      });
+              
+  });
+</script>
+      
+</body>
+</html>
+
+
+
+
+<!-- <div class="container">
+  <div class="card mt-2 text-white bg-info border-light" >        
+    <div class="card-headers">
+      <h2 class="card-title text-center">Calculadora de consumo vehicular</h2>       
+    </div>
+  </div>
+</div> -->
