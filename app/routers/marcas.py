@@ -6,9 +6,9 @@ from fastapi.requests import Request
 from fastapi.templating import Jinja2Templates
 
 
-from app.schemas.clases import Categoria
+from app.schemas import Categoria
 
-from app.repository.manejo import data1, df, marcas
+from app.repository.manejo import obtener_marcas, obtener_diccionario, obtener_df
 
 
 
@@ -21,12 +21,14 @@ templates = Jinja2Templates(directory="app/templates")
 
 
 @router.get("/", response_class=HTMLResponse)
-def mostrar_formulario(request: Request,):   
+def mostrar_formulario(request: Request,):
+    marcas = obtener_marcas()   
     return templates.TemplateResponse("index.html", {"request": request, "marcas": marcas})
 
 
 @router.post('/procesar')
-async def procesar_categoria(categoria: Categoria):    
+async def procesar_categoria(categoria: Categoria): 
+    data1 = obtener_diccionario()   
     marca = categoria.categoria
     modelos_vehiculos = [d.get('modelo') for d in data1 if d.get('marca') == marca]
     modelos_vehiculos = list(set(modelos_vehiculos))           
@@ -35,6 +37,7 @@ async def procesar_categoria(categoria: Categoria):
 
 @router.post('/procesar-cilindrada')
 async def procesar_cilindrada(marca_modelo: dict):
+    data1 = obtener_diccionario() 
     marca = marca_modelo['marca']
     modelo = marca_modelo['modelo']    
     cilindradas = []    
@@ -47,6 +50,7 @@ async def procesar_cilindrada(marca_modelo: dict):
 
 @router.post('/procesar-transmision')
 async def procesar_transmision(datos_vehiculo: dict):
+    data1 = obtener_diccionario() 
     marca = datos_vehiculo['marca']
     modelo = datos_vehiculo['modelo']
     cilindrada = datos_vehiculo['cilindrada']
@@ -60,6 +64,7 @@ async def procesar_transmision(datos_vehiculo: dict):
 
 @router.post('/procesar-combustible')
 async def procesar_transmision(datos_coche: dict):
+    data1 = obtener_diccionario() 
     marca = datos_coche['marca']
     modelo = datos_coche['modelo']
     cilindrada = datos_coche['cilindrada']
@@ -73,7 +78,8 @@ async def procesar_transmision(datos_coche: dict):
 
 
 @router.post('/procesar-cheked')
-async def procesar_todo(datos1: dict):    
+async def procesar_todo(datos1: dict):
+    df = obtener_df()   
     marca = datos1['marca']
     modelo = datos1['modelo']
     cilindrada = datos1['cilindrada']

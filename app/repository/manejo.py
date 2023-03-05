@@ -1,12 +1,17 @@
 import pandas as pd
 
+def obtener_diccionario():
+    df = pd.read_csv('./app/db/consumo.csv', sep=',', encoding='utf-8')    
+    data1 = df.to_dict('records')
+    return data1
 
-df1 = pd.read_csv('./app/db/consumo.csv', sep=',', encoding='utf-8')
+def obtener_marcas():
+    data1 = obtener_diccionario()    
+    llaves_marca = [d.get('marca') for d in data1 if d.get('marca')]
+    marcas = list(set(llaves_marca))
+    return marcas
 
-df = df1[['marca', 'modelo', 'cilindrada', 'transmision', 'combustible', 'urbano', 'ruta', 'mixto']]
 
-data1 = df.to_dict('records')
-
-llaves_marca = [d.get('marca') for d in data1 if d.get('marca')]
-
-marcas = list(set(llaves_marca))
+def obtener_df():
+    df = pd.read_csv('./app/db/consumo.csv', sep=',', encoding='utf-8')
+    return df
