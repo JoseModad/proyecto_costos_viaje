@@ -1,0 +1,28 @@
+.fondo {
+	background-image: url(../static/paisaje1.jpg);
+	background-position: center;	
+	background-size: cover;
+	background-attachment: fixed;
+	min-height: 90em;	
+}
+
+.foto {
+	background-image: url(../static/paisaje2.jpg);	
+	height: 5em;
+	width: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#caja-calculadora {
+	position: absolute;
+	right: 3vw;	
+	max-width: 100%;
+	height: auto;
+}
+
+#boton-sandwich {
+	position: absolute;
+	right: 2vw;
+}

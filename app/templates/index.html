@@ -2,132 +2,142 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Formulario</title>    
+    <title>Rutas y caminos</title>    
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+      <link rel="stylesheet" href="../static/style.css">
 </head>
-<body>
-  <nav class="navbar sticky-top bg-dark fixed-top m-1 rounded">
-    <div class="container-fluid">
-      <a class="navbar-brand text-white" href="#">Calculadora de consumo vehicular</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Sitios de Interes</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Cosas de interes
-              </a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li>
-                  <li class="dropdown-item">Proyectos</li>
-                  <hr class="dropdown-divider">                  
-                </li>                
-                <li><a class="dropdown-item" href="http://josemodad.com/" target="_blank">Hoja de vida</a></li>
-                <li><a class="dropdown-item" href="#">Calculadora</a></li>              
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
-  
-  <div class="container mt-1"> 
-    <div class="row">
-      <div class="p-2 navbar-dark bg-dark rounded-3">      
-          <form>
-            <div class="form-group">
-              <label for="marca" class="form-label text-white">Marca:</label>
-              <select class="form-control" id="marca" name="marca">
-                <option selected disabled >Seleccione una Marca</option>
-                {% for marca in marcas %}
-                <option value="{{ marca }}">{{ marca }}</option>
-                {% endfor %}
-              </select>
-            </div>        
-            <div class="form-group">
-              <label for="modelo" class="form-label text-white">Modelo:</label>
-              <select class="form-control" id="modelos-vehiculos">                                     
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="modelo" class="form-label text-white">Cilindrada:</label>
-              <select class="form-control" id="cilindrada">
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="modelo" class="form-label text-white">Transmision:</label>
-              <select class="form-control" id="transmisiones">                      
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="modelo" class="form-label text-white">Combustible:</label>
-              <select class="form-control" id="combustible">                     
-              </select>
-            </div>
-          </form>
-
-          <div class="card mt-4 bg-info">
-            <div class="card-header">
-              <h5 class="card-title text-white text-center">Selecciona el tipo de recorrido</h5>
-            </div>
-            <div class="card-body text-center">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="urbano">
-                <label class="form-check-label text-white" for="urbano">
-                  Urbano
-                </label>
+<body>  
+    <div>  
+      <nav class="navbar navbar-dark bg-dark fixed-top position-relative">
+        <div class="foto">        
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="../static/favorito1.jpeg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+              Rutas y Caminos
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" id="boton-sandwich">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">De Interes</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="mixto">
-                <label class="form-check-label text-white" for="mixto">
-                  Mixto
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="ruta" checked>
-                <label class="form-check-label text-white" for="ruta">
-                  Ruta
-                </label>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/">Home</a>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Links de interes
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="http://www.turismosalta.gov.ar/" target="_blank" >Secretaria de turismo de Salta</a></li>
+                        <li><a class="dropdown-item" href="https://www.argentina.tur.ar/#!/ar/regions/region-norte" target="_blank" >Region Noroeste</a></li>                  
+                      </ul>
+                    </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Proyectos
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                      <li><a class="dropdown-item" href="http://josemodad.com/"  target="_blank" >Pagina Personal</a></li>
+                      <li><a class="dropdown-item" href="http://127.0.0.1:8000/" target="_blank">Calculadora de consumo vehicular</a></li>                
+                    </ul>
+                  </li>
+                </ul>          
               </div>
             </div>
-          </div>
-
-          <div class="m-5 row justify-content-center">
-            <label for="customRange3" class="form-label text-white">Kilometros a recorrer</label>
-            <input type="range" class="form-range-track-width: 50%" min="0" max="3000" step="50" id="customRange3" value="0">          
           </div> 
+        </div>
+      </nav>
+    </div> 
+    <div class="fondo">     
+      <div class="container w-50 p-5 mt-1" id="caja-calculadora"> 
+        <div class="row">
+          <div class="p-2 navbar-dark bg-dark rounded-3">      
+              <form>
+                <div class="form-group">
+                  <label for="marca" class="form-label text-white">Marca:</label>
+                  <select class="form-control" id="marca" name="marca">
+                    <option selected disabled >Seleccione una Marca</option>
+                    {% for marca in marcas %}
+                    <option value="{{ marca }}">{{ marca }}</option>
+                    {% endfor %}
+                  </select>
+                </div>        
+                <div class="form-group">
+                  <label for="modelo" class="form-label text-white">Modelo:</label>
+                  <select class="form-control" id="modelos-vehiculos">                                     
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="modelo" class="form-label text-white">Cilindrada:</label>
+                  <select class="form-control" id="cilindrada">
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="modelo" class="form-label text-white">Transmision:</label>
+                  <select class="form-control" id="transmisiones">                      
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="modelo" class="form-label text-white">Combustible:</label>
+                  <select class="form-control" id="combustible">                     
+                  </select>
+                </div>
+              </form>
 
-          <div class="card w-80 m-4 text-white text-center bg-info border-light row justify-content-center">
-            <div class="card-headers">
-              <h5 class="card-title text-center"><span id="valorSeleccionado" class="text">0</span> Kilometros</h5>
-            </div>
-          </div>        
-
-          <div class="card mb-3 text-white bg-info border-light" >            
-            <div class="card-body">
-              <h5 class="card-title text-center" id="card-title">El consumo aproximado de tu vehiculo va a ser de:</h5>
-              <div class="container">
-                <h1 class="card-text text-center"><span  id="calculo">0.00</span> litros</h1>
+              <div class="card mt-4 bg-info">
+                <div class="card-header">
+                  <h5 class="card-title text-white text-center">Selecciona el tipo de recorrido</h5>
+                </div>
+                <div class="card-body text-center">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="urbano">
+                    <label class="form-check-label text-white" for="urbano">
+                      Urbano
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="mixto">
+                    <label class="form-check-label text-white" for="mixto">
+                      Mixto
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="ruta" checked>
+                    <label class="form-check-label text-white" for="ruta">
+                      Ruta
+                    </label>
+                  </div>
+                </div>
               </div>
-              <p class="card-text"><small class="text-muted">Powered by Jose Modad</small></p>
-            </div>
+
+              <div class="m-5 row justify-content-center">
+                <label for="customRange3" class="form-label text-white">Kilometros a recorrer</label>
+                <input type="range" class="form-range-track-width: 50%" min="0" max="3000" step="50" id="customRange3" value="0">          
+              </div> 
+
+              <div class="card w-80 m-4 text-white text-center bg-info border-light row justify-content-center">
+                <div class="card-headers">
+                  <h5 class="card-title text-center"><span id="valorSeleccionado" class="text">0</span> Kilometros</h5>
+                </div>
+              </div>        
+
+              <div class="card mb-3 text-white bg-info border-light" >            
+                <div class="card-body">
+                  <h5 class="card-title text-center" id="card-title">El consumo aproximado de tu vehiculo va a ser de:</h5>
+                  <div class="container">
+                    <h1 class="card-text text-center"><span  id="calculo">0.00</span> litros</h1>
+                  </div>
+                  <p class="card-text"><small class="text-muted">Powered by Jose Modad</small></p>
+                </div>
+              </div>
           </div>
+        </div>
       </div>
-    </div>
-  </div> 
+    </div> 
+  
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
           integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
