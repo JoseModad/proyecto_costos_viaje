@@ -51,92 +51,105 @@
         </div>
       </nav>
     </div> 
-    <div class="fondo">     
-      <div class="container w-50 p-5 mt-1" id="caja-calculadora"> 
-        <div class="row">
-          <div class="p-2 navbar-dark bg-dark rounded-3">      
-              <form>
-                <div class="form-group">
-                  <label for="marca" class="form-label text-white">Marca:</label>
-                  <select class="form-control" id="marca" name="marca">
-                    <option selected disabled >Seleccione una Marca</option>
-                    {% for marca in marcas %}
-                    <option value="{{ marca }}">{{ marca }}</option>
-                    {% endfor %}
-                  </select>
+    
+      <div class="fondo"> 
+        <div class="carousel-container">       
+          <div class="container position-absolute top-25 start-0">
+            <div class="marti">				
+            </div>
+            <div class="marti1">				
+            </div>
+            <div class="marti2">				
+            </div>
+          </div>
+        </div>
+                  
+        <div class="container w-50 p-5 mt-1" id="caja-calculadora"> 
+          <div class="row">
+            <div class="p-2 navbar-dark bg-dark rounded-3">      
+                <form>
+                  <div class="form-group">
+                    <label for="marca" class="form-label text-white">Marca:</label>
+                    <select class="form-control" id="marca" name="marca">
+                      <option selected disabled >Seleccione una Marca</option>
+                      {% for marca in marcas %}
+                      <option value="{{ marca }}">{{ marca }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>        
+                  <div class="form-group">
+                    <label for="modelo" class="form-label text-white">Modelo:</label>
+                    <select class="form-control" id="modelos-vehiculos">                                     
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="modelo" class="form-label text-white">Cilindrada:</label>
+                    <select class="form-control" id="cilindrada">
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="modelo" class="form-label text-white">Transmision:</label>
+                    <select class="form-control" id="transmisiones">                      
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="modelo" class="form-label text-white">Combustible:</label>
+                    <select class="form-control" id="combustible">                     
+                    </select>
+                  </div>
+                </form>
+
+                <div class="card mt-4 bg-info">
+                  <div class="card-header">
+                    <h5 class="card-title text-white text-center">Selecciona el tipo de recorrido</h5>
+                  </div>
+                  <div class="card-body text-center">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="urbano">
+                      <label class="form-check-label text-white" for="urbano">
+                        Urbano
+                      </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="mixto">
+                      <label class="form-check-label text-white" for="mixto">
+                        Mixto
+                      </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="ruta" checked>
+                      <label class="form-check-label text-white" for="ruta">
+                        Ruta
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="m-5 row justify-content-center">
+                  <label for="customRange3" class="form-label text-white">Kilometros a recorrer</label>
+                  <input type="range" class="form-range-track-width: 50%" min="0" max="3000" step="50" id="customRange3" value="0">          
+                </div> 
+
+                <div class="card w-80 m-4 text-white text-center bg-info border-light row justify-content-center">
+                  <div class="card-headers">
+                    <h5 class="card-title text-center"><span id="valorSeleccionado" class="text">0</span> Kilometros</h5>
+                  </div>
                 </div>        
-                <div class="form-group">
-                  <label for="modelo" class="form-label text-white">Modelo:</label>
-                  <select class="form-control" id="modelos-vehiculos">                                     
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="modelo" class="form-label text-white">Cilindrada:</label>
-                  <select class="form-control" id="cilindrada">
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="modelo" class="form-label text-white">Transmision:</label>
-                  <select class="form-control" id="transmisiones">                      
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="modelo" class="form-label text-white">Combustible:</label>
-                  <select class="form-control" id="combustible">                     
-                  </select>
-                </div>
-              </form>
 
-              <div class="card mt-4 bg-info">
-                <div class="card-header">
-                  <h5 class="card-title text-white text-center">Selecciona el tipo de recorrido</h5>
-                </div>
-                <div class="card-body text-center">
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="urbano">
-                    <label class="form-check-label text-white" for="urbano">
-                      Urbano
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="mixto">
-                    <label class="form-check-label text-white" for="mixto">
-                      Mixto
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipoRecorrido" id="urbano" value="ruta" checked>
-                    <label class="form-check-label text-white" for="ruta">
-                      Ruta
-                    </label>
+                <div class="card mb-3 text-white bg-info border-light" >            
+                  <div class="card-body">
+                    <h5 class="card-title text-center" id="card-title">El consumo aproximado de tu vehiculo va a ser de:</h5>
+                    <div class="container">
+                      <h1 class="card-text text-center"><span  id="calculo">0.00</span> litros</h1>
+                    </div>
+                    <p class="card-text"><small class="text-muted">Powered by Jose Modad</small></p>
                   </div>
                 </div>
-              </div>
-
-              <div class="m-5 row justify-content-center">
-                <label for="customRange3" class="form-label text-white">Kilometros a recorrer</label>
-                <input type="range" class="form-range-track-width: 50%" min="0" max="3000" step="50" id="customRange3" value="0">          
-              </div> 
-
-              <div class="card w-80 m-4 text-white text-center bg-info border-light row justify-content-center">
-                <div class="card-headers">
-                  <h5 class="card-title text-center"><span id="valorSeleccionado" class="text">0</span> Kilometros</h5>
-                </div>
-              </div>        
-
-              <div class="card mb-3 text-white bg-info border-light" >            
-                <div class="card-body">
-                  <h5 class="card-title text-center" id="card-title">El consumo aproximado de tu vehiculo va a ser de:</h5>
-                  <div class="container">
-                    <h1 class="card-text text-center"><span  id="calculo">0.00</span> litros</h1>
-                  </div>
-                  <p class="card-text"><small class="text-muted">Powered by Jose Modad</small></p>
-                </div>
-              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div> 
+    
   
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
           integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

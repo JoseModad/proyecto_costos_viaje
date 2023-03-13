@@ -6,7 +6,7 @@ from fastapi.requests import Request
 from fastapi.templating import Jinja2Templates
 
 
-from app.schemas import Categoria
+from app.schemas import Categoria, Marca_modelo, Datos_vehiculos, Datos_coche, Datos_todos
 
 from app.repository.manejo import obtener_marcas, obtener_modelos, obtener_cilindrada, obtener_transmision, obtener_combustible, obtener_tipo_recorrido
 
@@ -33,24 +33,24 @@ async def procesar_categoria(categoria: Categoria):
        
 
 @router.post('/procesar-cilindrada')
-async def procesar_cilindrada(marca_modelo: dict):
+async def procesar_cilindrada(marca_modelo: Marca_modelo):
     cilindradas = obtener_cilindrada(marca_modelo)    
     return {'cilindradas': cilindradas} 
 
 
 @router.post('/procesar-transmision')
-async def procesar_transmision(datos_vehiculo: dict):
+async def procesar_transmision(datos_vehiculo: Datos_vehiculos):
     transmisiones = obtener_transmision(datos_vehiculo)
     return {'transmisiones': transmisiones}
 
 
 @router.post('/procesar-combustible')
-async def procesar_combustible(datos_coche: dict):
+async def procesar_combustible(datos_coche: Datos_coche):
     combustible = obtener_combustible(datos_coche)   
     return {'combustible': combustible}
 
 
 @router.post('/procesar-cheked')
-async def procesar_todo(datos1: dict):
-    valores_columna = obtener_tipo_recorrido(datos1)       
+async def procesar_todo(datos_todos: Datos_todos):
+    valores_columna = obtener_tipo_recorrido(datos_todos)       
     return {"consumo": valores_columna}

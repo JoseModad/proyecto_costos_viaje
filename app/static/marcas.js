@@ -166,7 +166,7 @@ $(document).ready(function() {
 			cilindrada: cilindradaSeleccionada,
 			transmision: transmisionSeleccionada,
 			combustible: combustibleSeleccionado,
-			check: selectedValue,
+			consumo: selectedValue,
 		})
 		}).then(response => response.json())
 		.then(data => {

@@ -1,6 +1,6 @@
 import pandas as pd
 
-from app.schemas import Categoria
+from app.schemas import Categoria, Marca_modelo, Datos_vehiculos, Datos_coche, Datos_todos
 
 def obtener_diccionario():
     df = pd.read_csv('./app/db/consumo.csv', sep=',', encoding='utf-8')    
@@ -19,65 +19,49 @@ def obtener_df():
     return df
 
 
-def obtener_modelos(categoria: Categoria):
-    data1 = obtener_diccionario()
-    marca = categoria.categoria
-    modelos_vehiculos = [d.get('modelo') for d in data1 if d.get('marca') == marca]
+def obtener_modelos(categoria: Categoria):    
+    data1 = obtener_diccionario()    
+    modelos_vehiculos = [d.get('modelo') for d in data1 if d.get('marca') == categoria.categoria]
     modelos_vehiculos = list(set(modelos_vehiculos))           
     return modelos_vehiculos
 
 
-def obtener_cilindrada(marca_modelo: dict):
-    data1 = obtener_diccionario() 
-    marca = marca_modelo['marca']
-    modelo = marca_modelo['modelo']    
+def obtener_cilindrada(marca_modelo: Marca_modelo):    
+    data1 = obtener_diccionario()       
     cilindradas = []    
     for vehiculo in data1:
-        if vehiculo['marca'] == marca and vehiculo['modelo'] == modelo:
+        if vehiculo['marca'] == marca_modelo.marca and vehiculo['modelo'] == marca_modelo.modelo :
             cilindradas.append(vehiculo['cilindrada'])            
     cilindradas = list(set(cilindradas))    
     return cilindradas
 
 
-def obtener_transmision(datos_vehiculo: dict):
+def obtener_transmision(datos_vehiculo: Datos_vehiculos):
     data1 = obtener_diccionario() 
-    marca = datos_vehiculo['marca']
-    modelo = datos_vehiculo['modelo']
-    cilindrada = datos_vehiculo['cilindrada']
     transmisiones = []   
     for vehiculo in data1:
-        if vehiculo['marca'] == marca and vehiculo['modelo'] == modelo and vehiculo['cilindrada'] == cilindrada:
+        if vehiculo['marca'] == datos_vehiculo.marca and vehiculo['modelo'] == datos_vehiculo.modelo and vehiculo['cilindrada'] == datos_vehiculo.cilindrada:
             transmisiones.append(vehiculo['transmision'])
     transmisiones = list(set(transmisiones))
     return transmisiones
 
 
-def obtener_combustible(datos_coche: dict):
+def obtener_combustible(datos_coche: Datos_coche):
     data1 = obtener_diccionario() 
-    marca = datos_coche['marca']
-    modelo = datos_coche['modelo']
-    cilindrada = datos_coche['cilindrada']
-    transmision = datos_coche['transmision']
     combustible = []    
     for vehiculo in data1:
-        if vehiculo['marca'] == marca and vehiculo['modelo'] == modelo and vehiculo['cilindrada'] == cilindrada and vehiculo['transmision'] == transmision:
+        if vehiculo['marca'] == datos_coche.marca and vehiculo['modelo'] == datos_coche.modelo and vehiculo['cilindrada'] == datos_coche.cilindrada and vehiculo['transmision'] == datos_coche.transmision:
             combustible.append(vehiculo['combustible'])
     combustible = list(set(combustible))
     return combustible
 
 
-def obtener_tipo_recorrido(datos1):
-    df = obtener_df()   
-    marca = datos1['marca']
-    modelo = datos1['modelo']
-    cilindrada = datos1['cilindrada']
-    transmision = datos1['transmision']
-    combustible = datos1['combustible']
-    consumo = datos1['check']    
-    df_filtrado = df.query("marca == @marca and modelo == @modelo and cilindrada == @cilindrada and transmision == @transmision and combustible == @combustible")
-    if consumo == 'urbano':
+def obtener_tipo_recorrido(datos_todos: Datos_todos):    
+    df = obtener_df()       
+    df_filtrado = df.query("marca == @datos_todos.marca and modelo == @datos_todos.modelo and cilindrada == @datos_todos.cilindrada and transmision == @datos_todos.transmision and combustible == @datos_todos.combustible")
+    if datos_todos.consumo == 'urbano':
         consumo_col = 'urbano'
-    elif consumo == 'ruta':
+    elif datos_todos.consumo == 'ruta':
         consumo_col = 'ruta'
     else:
         consumo_col = 'mixto'        
