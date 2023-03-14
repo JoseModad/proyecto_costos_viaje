@@ -1,9 +1,6 @@
 import os
 from dotenv import load_dotenv
 from pathlib import Path
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Float
 
 
 env_path = Path(".") / ".env"
@@ -22,24 +19,3 @@ class Settings:
     
 
 settings = Settings()
-
-engine = create_engine(Settings.DATABASE_URL) 
-
-Base = declarative_base() 
-
-
-class Autos(Base):
-    __tablename__ = 'autos'
-
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    marca = Column(String)
-    modelo = Column(String)
-    cilindrada = Column(Integer)
-    transmision = Column(String)
-    combustible = Column(String)
-    urbano = Column(Float)
-    ruta = Column(Float)
-    mixto = Column(Float)  
-    
-
-Base.metadata.create_all(bind = engine)
