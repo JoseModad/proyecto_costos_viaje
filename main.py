@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
 from fastapi.staticfiles import StaticFiles
-
 from app.routers import marcas
 
 
@@ -12,8 +11,6 @@ app.include_router(marcas.router)
 
 
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
-
-
 
 
 if __name__ == "__main__":    

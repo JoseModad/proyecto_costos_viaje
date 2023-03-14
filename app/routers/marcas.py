@@ -1,10 +1,7 @@
 from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
 from fastapi.requests import Request
-
-
 from fastapi.templating import Jinja2Templates
-
 
 from app.schemas import Categoria, Marca_modelo, Datos_vehiculos, Datos_coche, Datos_todos
 
@@ -21,9 +18,9 @@ templates = Jinja2Templates(directory="app/templates")
 
 
 @router.get("/", response_class=HTMLResponse)
-def mostrar_formulario(request: Request,):
+def mostrar_formulario(request: Request):
     marcas = obtener_marcas()   
-    return templates.TemplateResponse("index.html", {"request": request, "marcas": marcas})
+    return templates.TemplateResponse("index.html", {"request": request, "marcas": marcas})   
 
 
 @router.post('/procesar')
